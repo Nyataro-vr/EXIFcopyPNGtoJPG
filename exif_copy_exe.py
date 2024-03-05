@@ -26,7 +26,7 @@ def embed_exif_to_jpeg():
         exif_data = f.read()
     exif_dict = piexif.load(exif_data)
     exif_bytes = piexif.dump(exif_dict)
-    img.save(jpeg_file_path, exif=exif_bytes, quality=100)
+    img.save(jpeg_file_path, "jpeg", exif=exif_bytes, quality=100, optimize=False, icc_profile=img.info.get('icc_profile'), subsampling=0)
     status_label.config(text="eXIf data embedded successfully.")
 
 # GUIの作成
